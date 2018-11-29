@@ -19,14 +19,7 @@ public class DbConnection{
             System.out.println("Driver not found");
         }catch (SQLException e){
             System.out.println(e.getMessage());
-        }/*finally{
-            try{
-                if (conn !=null){
-                    conn.close();}
-            }catch(SQLException ex){
-                System.out.println(ex.getMessage());
-            }
-        }*/
+        }
     }
     //This method search the input plate in DB and returns status of insurance.
     public void searchTable(String plate) {
@@ -50,7 +43,7 @@ public class DbConnection{
                     System.out.println("Insurance status is Active");
                     System.out.println(owner.toString());
                 } else {
-                   // Person owner = new Person(plates, expirationDate, isValid, vehicleName, ownersName);
+
                     System.out.println("Insurance has expired");
                     System.out.println(owner.toString());
                 }
@@ -153,8 +146,15 @@ public class DbConnection{
                     fw.close();
                     System.out.println("File created successfully ");
                 } catch (IOException e) {
-                    System.out.println("Error while flushing/closing fileWriter");
+                    System.out.println("Error in flushing or closing file");
                     e.printStackTrace();
+                }finally{
+                    try{
+                        if (conn !=null){
+                            conn.close();}
+                    }catch(SQLException ex){
+                        System.out.println(ex.getMessage());
+                    }
                 }
             }
         }
@@ -181,7 +181,7 @@ public class DbConnection{
                     isValid.add(rs.getString("Status"));
                 }
             }
-               //System.out.println(name.get(0));
+
             //bubblesort
             int n = plates.size();
             String temp ;
@@ -205,9 +205,6 @@ public class DbConnection{
                      isValid.set(j-1,isValid.get(j));
                      isValid.set(j,temp);
                  }
-
-
-                //System.out.println(name.get(i)+" "+plates.get(i)+" "+vehiclesName.get(i)+" Expired at:"+expirationDate.get(i)+" "+"\n");
             }
             }
            for (int i=0;i < plates.size();i++) {
