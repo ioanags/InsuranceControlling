@@ -1,2 +1,2 @@
 # InsuranceControlling
-Insurance controlling system made during Java | Spring course (On progress)
+Insurance controlling system made during Java | Spring course (In progress)
